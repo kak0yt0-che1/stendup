@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f6f1e7">
+<title>Приглашение для Мити</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Oswald:wght@500;700&family=Marck+Script&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f6f1e7; --ink:#111; --red:#e8203a; --gray:#d9d2c3;
+  --sat:env(safe-area-inset-top,0px); --sab:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:'Oswald',Impact,sans-serif; font-weight:500;
+  -webkit-text-size-adjust:100%; overflow-x:hidden;
+  padding:calc(var(--sat) + 16px) 16px calc(var(--sab) + 32px);
+  background-image:radial-gradient(rgba(0,0,0,.09) 1.2px,transparent 1.4px);
+  background-size:8px 8px;
+}
+.wrap{max-width:440px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+.sfx{font-family:'Rubik Mono One',sans-serif;color:var(--red);
+  -webkit-text-stroke:2px var(--ink);paint-order:stroke fill;text-shadow:3px 3px 0 var(--ink);
+  position:absolute;line-height:1;pointer-events:none}
+
+/* panels */
+.panel{position:relative;border:4px solid var(--ink);background:#fff;box-shadow:7px 7px 0 var(--ink);
+  overflow:hidden;opacity:0;transform:translateY(30px) rotate(var(--r,0deg));transition:.6s cubic-bezier(.2,.9,.3,1.2)}
+.panel.in{opacity:1;transform:translateY(0) rotate(var(--r,0deg))}
+.dots{background-image:radial-gradient(var(--ink) 1.6px,transparent 1.8px);background-size:7px 7px}
+.rays{position:absolute;inset:-40%;background:repeating-conic-gradient(from 0deg at 50% 50%,var(--ink) 0 1.1deg,transparent 1.1deg 5deg);
+  -webkit-mask:radial-gradient(circle,transparent 22%,#000 70%);mask:radial-gradient(circle,transparent 22%,#000 70%);opacity:.9}
+
+/* hero */
+.hero{height:min(66dvh,520px);display:flex;align-items:center;justify-content:center;text-align:center;--r:-1deg}
+.hero .card{position:relative;background:#fff;border:4px solid var(--ink);padding:18px 14px 16px;transform:rotate(2deg);box-shadow:5px 5px 0 var(--red)}
+.hero small{font-size:15px;letter-spacing:.25em}
+.hero h1{margin:4px 0 6px;font-family:'Rubik Mono One',sans-serif;font-size:clamp(30px,10vw,42px);line-height:1;letter-spacing:-.02em}
+.hero h1 span{color:var(--red)}
+.hero .to{font-size:20px;border-top:3px solid var(--ink);padding-top:8px;margin-top:8px;font-weight:700}
+.hero .sfx{font-size:34px;top:14px;right:10px;transform:rotate(12deg)}
+.hero .sfx.b{top:auto;right:auto;bottom:14px;left:10px;font-size:26px;transform:rotate(-9deg)}
+.scroll{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-weight:700;letter-spacing:.2em;font-size:13px;animation:bob 1.2s infinite}
+@keyframes bob{50%{transform:translateY(6px)}}
+
+/* story */
+.story{display:grid;gap:14px}
+.sp{display:flex;align-items:center;gap:12px;padding:16px 14px;min-height:112px}
+.sp:nth-child(even){flex-direction:row-reverse;background:var(--gray)}
+.face{flex:0 0 auto;width:74px;height:74px;border:4px solid var(--ink);border-radius:50%;background:#fff;
+  display:grid;place-items:center;font-size:40px;position:relative}
+.face i{position:absolute;bottom:-12px;font:700 11px 'Oswald';background:var(--ink);color:#fff;padding:0 6px;font-style:normal;letter-spacing:.08em}
+.bubble{position:relative;background:#fff;border:3px solid var(--ink);border-radius:18px;padding:10px 12px;font-size:17px;line-height:1.25;flex:1}
+.bubble::after{content:"";position:absolute;top:50%;left:-9px;width:14px;height:14px;background:#fff;border-left:3px solid var(--ink);border-bottom:3px solid var(--ink);transform:translateY(-50%) rotate(45deg)}
+.sp:nth-child(even) .bubble::after{left:auto;right:-9px;transform:translateY(-50%) rotate(-135deg)}
+.bubble b{color:var(--red)}
+.shock{background:#fff}
+.shock .rays{opacity:.55}
+.shock .bubble{border-radius:4px;font-weight:700;font-size:20px;text-align:center;z-index:1}
+
+/* ticket */
+.tix{--r:1.2deg;padding:16px 14px 18px;background:#ffe9a8}
+.tix h2{margin:0 0 10px;font-family:'Rubik Mono One';font-size:20px;line-height:1.1}
+.ticket{position:relative;background:#fff;border:3px dashed var(--ink);padding:12px 14px;display:grid;gap:6px}
+.ticket .row{display:flex;justify-content:space-between;gap:10px;font-size:17px;border-bottom:2px solid var(--ink);padding-bottom:4px}
+.ticket .row span{opacity:.6;font-size:13px;letter-spacing:.14em;align-self:center}
+.ticket .row b{text-align:right}
+.ticket .seat{display:flex;gap:8px;margin-top:4px}
+.ticket .seat div{flex:1;border:3px solid var(--ink);text-align:center;padding:6px 0 4px;font-size:15px}
+.ticket .seat div strong{display:block;font-family:'Rubik Mono One';font-size:26px;color:var(--red)}
+.stamp{position:absolute;right:6px;top:-14px;border:3px solid var(--red);color:var(--red);padding:2px 8px;font-family:'Rubik Mono One';font-size:12px;transform:rotate(8deg);background:#fff}
+.tix p{margin:12px 0 0;font-size:16px}
+.shot{position:relative;height:190px;overflow:hidden;border:3px solid var(--ink);margin-bottom:12px;background:#fff}
+.shot img{display:block;width:100%;margin-top:-17%;filter:grayscale(1) contrast(1.6) brightness(1.05)}
+.shot::before{content:"";position:absolute;inset:0;z-index:1;mix-blend-mode:multiply;pointer-events:none;
+  background-image:radial-gradient(#000 1.1px,transparent 1.5px);background-size:5px 5px;opacity:.45}
+.shot span{position:absolute;z-index:2;left:0;bottom:0;background:var(--ink);color:#fff;font-family:'Rubik Mono One';font-size:11px;padding:4px 8px}
+
+/* question */
+.ask{--r:-.8deg;padding:22px 14px 24px;text-align:center;background:#fff;min-height:420px}
+.ask h2{position:relative;z-index:1;margin:0 0 14px;font-family:'Rubik Mono One';font-size:clamp(22px,7.2vw,29px);line-height:1.15}
+.ask h2 em{font-style:normal;background:var(--ink);color:#fff;padding:0 6px;display:inline-block;transform:skew(-8deg)}
+.taunt{position:relative;z-index:1;min-height:52px;margin:0 auto 14px;display:inline-block;max-width:90%}
+.taunt .bubble{font-size:16px;padding:8px 12px;display:block}
+.taunt .bubble::after{top:auto;bottom:-10px;left:30px;transform:rotate(-45deg)}
+.btns{position:relative;z-index:1;display:flex;gap:14px;align-items:center;justify-content:center;min-height:120px}
+button{font-family:'Rubik Mono One',sans-serif;border:4px solid var(--ink);cursor:pointer;color:var(--ink);touch-action:manipulation;
+  box-shadow:5px 5px 0 var(--ink);transition:transform .15s,box-shadow .15s}
+button:active{box-shadow:1px 1px 0 var(--ink)}
+#yes{background:var(--red);color:#fff;font-size:22px;padding:18px 26px;min-height:56px;
+  transform:scale(var(--ys,1));transform-origin:center;animation:pulse 1.4s infinite}
+@keyframes pulse{50%{box-shadow:5px 5px 0 var(--ink),0 0 0 8px rgba(232,32,58,.25)}}
+#no{background:#fff;font-size:15px;padding:14px 18px;min-height:48px;white-space:nowrap}
+#no.fly{position:fixed;z-index:50;margin:0;transition:left .28s cubic-bezier(.3,1.6,.5,1),top .28s cubic-bezier(.3,1.6,.5,1),transform .2s}
+.ph{display:none}
+.ask .hint{position:relative;z-index:1;margin-top:16px;font-size:13px;opacity:.7;letter-spacing:.06em}
+.ask .sfx{font-size:20px;top:8px;right:8px;transform:rotate(10deg);z-index:1}
+
+/* gate */
+#gate{position:fixed;inset:0;z-index:100;background:var(--paper);display:grid;place-items:center;padding:20px;text-align:center;
+  background-image:radial-gradient(rgba(0,0,0,.18) 1.4px,transparent 1.6px);background-size:8px 8px;transition:transform .7s cubic-bezier(.7,0,.3,1),opacity .5s .2s}
+#gate.open{transform:translateY(-105%);opacity:0;pointer-events:none}
+#gate .env{position:relative;border:4px solid var(--ink);background:#fff;padding:28px 20px;box-shadow:8px 8px 0 var(--ink);transform:rotate(-2deg);max-width:340px;width:100%}
+#gate .env h1{font-family:'Rubik Mono One';font-size:28px;margin:0 0 8px;line-height:1.05}
+#gate .env p{margin:0 0 18px;font-size:17px}
+#gate button{background:var(--red);color:#fff;font-size:16px;padding:14px 20px}
+#gate .sfx{font-size:26px;top:-22px;right:-8px;transform:rotate(12deg)}
+
+/* result */
+#win{position:fixed;inset:0;z-index:200;background:var(--paper);display:none;overflow:hidden;
+  padding:calc(var(--sat) + 20px) 20px calc(var(--sab) + 20px);place-items:center;text-align:center}
+#win.show{display:grid}
+#win .rays{opacity:.5;animation:spin 30s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#win .box{position:relative;z-index:1;background:#fff;border:4px solid var(--ink);box-shadow:8px 8px 0 var(--ink);padding:24px 18px;max-width:380px;width:100%;animation:pop .6s cubic-bezier(.2,1.6,.4,1)}
+@keyframes pop{from{transform:scale(.3) rotate(-10deg);opacity:0}}
+#win h2{margin:0;font-family:'Rubik Mono One';font-size:clamp(46px,16vw,66px);color:var(--red);-webkit-text-stroke:3px var(--ink);paint-order:stroke fill;text-shadow:4px 4px 0 var(--ink);line-height:1}
+#win p{font-size:19px;margin:12px 0}
+#win .note{font-family:'Marck Script',cursive;font-size:24px;line-height:1.15}
+#win a{display:inline-block;margin-top:6px;background:var(--ink);color:#fff;text-decoration:none;font-family:'Rubik Mono One';font-size:14px;padding:13px 16px;border:4px solid var(--ink);box-shadow:4px 4px 0 var(--red)}
+.conf{position:fixed;top:0;left:0;width:10px;height:14px;z-index:300;pointer-events:none}
+
+@media (max-height:700px){.hero{height:70dvh}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="env">
+    <span class="sfx">ТСС!</span>
+    <h1>СЕКРЕТНО<br>ДЛЯ МИТИ</h1>
+    <p>Тебе пришло письмо. Вскрывай.</p>
+    <button id="openBtn">ВСКРЫТЬ ✉️</button>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <section class="panel hero dots">
+    <div class="rays"></div>
+    <div class="card">
+      <small>★ ОФИЦИАЛЬНО ★</small>
+      <h1>ПРИГЛА<span>ШЕНИЕ</span></h1>
+      <div>на невероятное событие</div>
+      <div class="to">Кому: <span id="toName"></span></div>
+    </div>
+    <span class="sfx">ДЗЫНЬ!</span>
+    <span class="sfx b">ГО!!</span>
+    <div class="scroll">▼ ЛИСТАЙ ▼</div>
+  </section>
+
+  <section class="story">
+    <div class="panel sp"><div class="face">😎<i id="fromTag"></i></div>
+      <div class="bubble">Пацаны, го на <b>стендап</b>? Билеты я беру!</div></div>
+    <div class="panel sp"><div class="face">🤓<i>ТИМА</i></div>
+      <div class="bubble">Не могу, бро… я готовлюсь к <b>IELTS</b> 📚</div></div>
+    <div class="panel sp"><div class="face">😏<i>ТИМА</i></div>
+      <div class="bubble">Ну тогда идите с Митей <b>вдвоём</b>. Как на <b>свиданку</b> 😌</div></div>
+    <div class="panel sp shock"><div class="rays"></div><div class="face">😳<i>МИТЯ</i></div>
+      <div class="bubble">…ЧТО?!</div></div>
+  </section>
+
+  <section class="panel tix">
+    <h2>БИЛЕТЫ УЖЕ<br>КУПЛЕНЫ 🎟️</h2>
+    <div class="shot"><img src="photo_2026-11-05_23-12-47.jpg" alt="Ne Angime"><span>NE ANGIME: ТҮСІРІЛІМ</span></div>
+    <div class="ticket">
+      <span class="stamp">НЕВОЗВРАТНО</span>
+      <div class="row"><span>СОБЫТИЕ</span><b id="evName"></b></div>
+      <div class="row"><span>ДАТА</span><b id="evDate"></b></div>
+      <div class="row"><span>ВРЕМЯ</span><b id="evTime"></b></div>
+      <div class="row"><span>МЕСТО</span><b id="evPlace"></b></div>
+      <div class="row"><span>АДРЕС</span><b>Кабанбай батыра, 71</b></div>
+      <div class="seat"><div>БИЛЕТ<strong>1</strong>Я 😎</div><div>БИЛЕТ<strong>2</strong>ТЫ 🫵</div></div>
+    </div>
+    <p>Два билета. Рассадка свободная, так что сядем рядом, если ты не опоздаешь. Вход закрывается через 15 минут после начала. Назад дороги нет.</p>
+  </section>
+
+  <section class="panel ask dots" id="ask">
+    <span class="sfx">ДОКИ-ДОКИ</span>
+    <h2>ПОЙДЁШЬ СО МНОЙ<br>НА <em>СВИДАНИЕ</em><br>(стендап)?</h2>
+    <div class="taunt"><span class="bubble" id="taunt">Выбор за тобой, Митя 👀</span></div>
+    <div class="btns">
+      <button id="yes">ДА! 💘</button>
+      <span class="ph" id="ph"></span>
+      <button id="no">НЕТ</button>
+    </div>
+    <div class="hint">* кнопка «нет» немного стеснительная</div>
+  </section>
+
+</main>
+
+<div id="win">
+  <div class="rays"></div>
+  <div class="box">
+    <h2>ДА!!</h2>
+    <p><b>Митя принял приглашение!</b></p>
+    <p class="note">Свидание назначено 💘<br>Дата: <span id="wDate"></span></p>
+    <p style="font-size:15px;opacity:.75">Не опаздывай и надень что-нибудь красивое 😎</p>
+    <a id="tgLink" href="#" target="_blank" rel="noopener">СООБЩИТЬ МНЕ 📩</a>
+  </div>
+</div>
+
+<script>
+/* ========= НАСТРОЙКИ — меняй тут ========= */
+const CONFIG = {
+  to:    'МИТЯ (МИРАС)',
+  from:  'ОЛЖАС',
+  event: 'NE ANGIME',
+  date:  '13 НОЯБРЯ 2026',
+  time:  '22:00',
+  place: 'CENTRAL STAND-UP CLUB',
+  tg:    ''            // твой ник в Telegram без @, например 'olzhas' (если пусто — кнопка просто скроется)
+};
+/* ========================================= */
+
+const $ = s => document.querySelector(s);
+$('#toName').textContent = CONFIG.to;
+$('#fromTag').textContent = CONFIG.from;
+$('#evName').textContent = CONFIG.event;
+$('#evDate').textContent = CONFIG.date;
+$('#evTime').textContent = CONFIG.time;
+$('#evPlace').textContent = CONFIG.place;
+$('#wDate').textContent = CONFIG.date + ', ' + CONFIG.time;
+
+/* gate */
+$('#openBtn').addEventListener('click',()=>{ $('#gate').classList.add('open'); navigator.vibrate&&navigator.vibrate(30); });
+
+/* reveal */
+const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} }),{threshold:.2});
+document.querySelectorAll('.panel').forEach((p,i)=>{ p.style.transitionDelay=(i%2)*.08+'s'; io.observe(p); });
+
+/* runaway NO */
+const yes=$('#yes'), no=$('#no'), ph=$('#ph'), taunt=$('#taunt');
+const lines=['Эй, куда жмёшь?! 😳','Мимо! 😜','Кнопка занята','Не-не-не, ты не хочешь так','Промах, Митя 🎯','Билеты уже куплены 🎟️','Ну пожалуйста 🥺','Тима бы пошёл…','Я старался выбирать места 😢','Подумай ещё раз 🤔','Эта кнопка сломана 🔧','Ты же знаешь ответ 😏','Ладно, нажми «ДА» уже 💘'];
+let dodges=0, fly=false;
+
+function dodge(px,py){
+  if(!fly){
+    const r=no.getBoundingClientRect();
+    ph.style.display='inline-block'; ph.style.width=r.width+'px'; ph.style.height=r.height+'px';
+    document.body.appendChild(no); no.classList.add('fly'); fly=true;
+  }
+  dodges++;
+  const vw=window.innerWidth, vh=window.innerHeight;
+  const w=no.offsetWidth, h=no.offsetHeight, m=12;
+  const top0=(window.visualViewport?.offsetTop||0)+60, bot=vh-h-m-(parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sab'))||0);
+  const yr=yes.getBoundingClientRect();
+  if(px==null){px=vw/2;py=vh/2;}
+  let best=null,bd=-1;
+  for(let i=0;i<40;i++){
+    const x=m+Math.random()*(vw-w-2*m), y=top0+Math.random()*Math.max(1,bot-top0);
+    const cx=x+w/2, cy=y+h/2, d=Math.hypot(cx-px,cy-py);
+    const hitYes=x<yr.right+8&&x+w>yr.left-8&&y<yr.bottom+8&&y+h>yr.top-8;
+    if(hitYes) continue;
+    if(d>bd){bd=d;best={x,y};}
+    if(d>vw*.5) break;
+  }
+  if(!best) best={x:m,y:top0};
+  no.style.left=best.x+'px'; no.style.top=best.y+'px';
+  const s=Math.max(.6,1-dodges*.035);
+  no.style.transform='scale('+s+')';
+  yes.style.setProperty('--ys',Math.min(1.35,1+dodges*.03));
+  taunt.textContent=lines[Math.min(dodges-1,lines.length-1)];
+  navigator.vibrate&&navigator.vibrate(15);
+}
+const fromEvt=e=>{ const t=e.touches?e.touches[0]:e; return [t?.clientX,t?.clientY]; };
+no.addEventListener('pointerenter',e=>{ if(e.pointerType==='mouse') dodge(...fromEvt(e)); });
+no.addEventListener('touchstart',e=>{ e.preventDefault(); dodge(...fromEvt(e)); },{passive:false});
+no.addEventListener('pointerdown',e=>{ e.preventDefault(); dodge(e.clientX,e.clientY); });
+no.addEventListener('focus',()=>dodge());
+no.addEventListener('click',e=>{ e.preventDefault(); dodge(e.clientX,e.clientY); });
+document.addEventListener('pointermove',e=>{
+  if(e.pointerType!=='mouse'||!fly) return;
+  const r=no.getBoundingClientRect(), cx=r.left+r.width/2, cy=r.top+r.height/2;
+  if(Math.hypot(e.clientX-cx,e.clientY-cy)<85) dodge(e.clientX,e.clientY);
+});
+window.addEventListener('resize',()=>{ if(fly) dodge(); });
+
+/* YES */
+yes.addEventListener('click',()=>{
+  navigator.vibrate&&navigator.vibrate([60,40,120]);
+  no.style.display='none';
+  $('#win').classList.add('show');
+  if(CONFIG.tg){
+    $('#tgLink').href='https://t.me/'+CONFIG.tg+'?text='+encodeURIComponent('ДА! Я иду с тобой на стендап 💘');
+  } else $('#tgLink').style.display='none';
+  confetti();
+});
+function confetti(){
+  const cols=['#e8203a','#111','#fff','#ffd84a'];
+  for(let i=0;i<90;i++){
+    const c=document.createElement('div'); c.className='conf';
+    c.style.background=cols[i%cols.length]; if(c.style.background.includes('255, 255, 255')||cols[i%4]==='#fff') c.style.border='2px solid #111';
+    document.body.appendChild(c);
+    const x=Math.random()*innerWidth, dx=(Math.random()-.5)*200, rot=Math.random()*900;
+    c.animate([
+      {transform:`translate(${x}px,-20px) rotate(0)`,opacity:1},
+      {transform:`translate(${x+dx}px,${innerHeight+40}px) rotate(${rot}deg)`,opacity:1}
+    ],{duration:1800+Math.random()*1800,delay:Math.random()*600,easing:'cubic-bezier(.3,.6,.5,1)',fill:'forwards'}).onfinish=()=>c.remove();
+  }
+}
+</script>
+</body>
+</html>
